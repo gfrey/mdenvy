@@ -45,7 +45,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "base"
 
     # Add user recipes.
-    if File.directory? "#{chef.cookbooks_path}/#{ENV["USER"]}"
+    if chef.cookbooks_path.any? { |d| File.directory? "#{d}/#{ENV['USER']}" }
       chef.add_recipe ENV["USER"]
     end
   end
