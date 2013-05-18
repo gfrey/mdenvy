@@ -48,5 +48,8 @@ Vagrant::Config.run do |config|
     if chef.cookbooks_path.any? { |d| File.directory? "#{d}/#{ENV['USER']}" }
       chef.add_recipe ENV["USER"]
     end
+
+    chef.json = { :mdenvy => { :user => ENV["USER"],
+                               :pub_ssh_key => File.open("#{ENV['HOME']}/.ssh/id_rsa.pub").read } }
   end
 end
