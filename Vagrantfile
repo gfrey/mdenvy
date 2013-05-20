@@ -49,6 +49,8 @@ Vagrant::Config.run do |config|
   # folder, and the third is the path on the host to the actual folder.
   # config.vm.share_folder "v-data", "/vagrant_data", "../data"
 
+  config.ssh.forward_agent = true
+
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
@@ -56,6 +58,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
     # Add base recipes.
     chef.add_recipe "base::hostname"
+    chef.add_recipe "base::ssh-agent"
     chef.add_recipe "base::update"
     chef.add_recipe "base::packages"
     chef.add_recipe "base::user"
