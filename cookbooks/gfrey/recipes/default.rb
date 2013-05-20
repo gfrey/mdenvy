@@ -10,6 +10,13 @@ directory "#{user_home}/usr/etc" do
   action :create
 end
 
+directory "#{user_home}/usr/bin" do
+  owner "gfrey"
+  group "users"
+  mode "0755"
+  action :create
+end
+
 ## -----------------------------------------------------------------------------
 ## Setup zsh and configuration.
 package 'zsh-beta'
@@ -59,6 +66,8 @@ end
 ## Setup tmux.
 package 'tmux'
 
+package 'python-psutil'
+
 git "#{user_home}/usr/etc/tmuxified" do
   repository "https://github.com/gfrey/tmuxified.git"
   revision "personal"
@@ -75,6 +84,12 @@ end
 
 link "#{user_home}/.tmux.conf" do
   to "#{user_home}/.tmux/tmux.conf"
+  owner "gfrey"
+  group "users"
+end
+
+link "#{user_home}/usr/bin/basic-cpu-and-memory.tmux" do
+  to "#{user_home}/.tmux/scripts/basic-cpu-and-memory.tmux"
   owner "gfrey"
   group "users"
 end
