@@ -1,6 +1,19 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Helper method to determine the ssh public key.
+def get_ssh_public_key
+  public_key = ['id_rsa.pub', 'id_dsa.pub']
+    .map { |x| "#{ENV['HOME']}/.ssh/#{x}" }
+    .select{ |x| File.exists?(x) }
+    .first
+  if public_key.nil?
+    puts "No public key for ssh found! Create one using ssh-keygen in the standard location (~/.ssh/id_{dsa|rsa}.pub)."
+    exit 42
+  end
+  File.open(public_key).read
+end
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -58,6 +71,6 @@ Vagrant::Config.run do |config|
 
     # Make user information available to chef.
     chef.json = { :mdenvy => { :user => ENV["USER"],
-                               :pub_ssh_key => File.open("#{ENV['HOME']}/.ssh/id_rsa.pub").read } }
+                               :pub_ssh_key => get_ssh_public_key } }
   end
 end
