@@ -1,7 +1,5 @@
 user_home = "/home/gfrey"
 
-node[:current_user] = "gfrey"
-
 ## -----------------------------------------------------------------------------
 ## Create directory with all user related configuration.
 directory "#{user_home}/usr/etc" do
