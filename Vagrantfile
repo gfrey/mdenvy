@@ -46,6 +46,11 @@ Vagrant::Config.run do |config|
     chef.add_recipe "base::packages"
     chef.add_recipe "base::user"
 
+    # TODO: add your project's cookbooks. Make sure you check out code
+    #       and make it available to the user that provisions the
+    #       system.
+    # chef.add_recipe "project"
+
     # Add user recipes.
     if chef.cookbooks_path.any? { |d| File.directory? "#{d}/#{ENV['USER']}" }
       chef.add_recipe ENV["USER"]
