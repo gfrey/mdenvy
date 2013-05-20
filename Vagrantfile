@@ -42,13 +42,16 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     # Add base recipes.
-    chef.add_recipe "base"
+    chef.add_recipe "base::update"
+    chef.add_recipe "base::packages"
+    chef.add_recipe "base::user"
 
     # Add user recipes.
     if chef.cookbooks_path.any? { |d| File.directory? "#{d}/#{ENV['USER']}" }
       chef.add_recipe ENV["USER"]
     end
 
+    # Make user information available to chef.
     chef.json = { :mdenvy => { :user => ENV["USER"],
                                :pub_ssh_key => File.open("#{ENV['HOME']}/.ssh/id_rsa.pub").read } }
   end
