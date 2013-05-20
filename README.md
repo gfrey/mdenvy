@@ -42,3 +42,10 @@ up this humble mechanism.
 If you ever find yourself in need for root access use the
   `vagrant ssh`
 command to get administrative access.
+
+
+# License
+
+Copyright (C) 2013 Gereon Frey
+
+Distributed under the [Eclipse Public License](http://www.eclipse.org/legal/epl-v10.html).
