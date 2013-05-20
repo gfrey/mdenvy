@@ -55,6 +55,7 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
     # Add base recipes.
+    chef.add_recipe "base::hostname"
     chef.add_recipe "base::update"
     chef.add_recipe "base::packages"
     chef.add_recipe "base::user"
@@ -71,6 +72,7 @@ Vagrant::Config.run do |config|
 
     # Make user information available to chef.
     chef.json = { :mdenvy => { :user => ENV["USER"],
-                               :pub_ssh_key => get_ssh_public_key } }
+                               :pub_ssh_key => get_ssh_public_key,
+                               :hostname => "sisyphos" } }
   end
 end
