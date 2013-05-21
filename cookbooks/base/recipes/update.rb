@@ -1,6 +1,9 @@
-## Update the APT package cache
-e = execute "apt-get update" do
-  action :nothing
+## Change the apt mirror
+execute "change apt mirrors to generic one" do
+  command "sed -i 's|http://us.archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list"
 end
 
-e.run_action(:run)
+## Update the APT package cache
+execute "update the apt package cache and upgrade installed packages" do
+  command "apt-get update && apt-get upgrade -y"
+end
