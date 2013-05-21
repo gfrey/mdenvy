@@ -76,6 +76,7 @@ Vagrant::Config.run do |config|
     # Make user information available to chef.
     chef.json = { :mdenvy => { :user => ENV["USER"],
                                :pub_ssh_key => get_ssh_public_key,
-                               :hostname => "sisyphos" } }
+                               :hostname => "sisyphos",
+                               :ssh_servers => ["github.com"] } }
   end
 end

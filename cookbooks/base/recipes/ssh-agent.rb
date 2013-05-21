@@ -3,10 +3,9 @@ Directory "/root/.ssh" do
   mode 0700
 end
 
-File "/root/.ssh/config" do
-  action :create
-  content "Host *\n  StrictHostKeyChecking no"
-  mode 0600
+execute "fill .ssh/known_hosts file" do
+  command "ssh-keyscan -t rsa,dsa -H #{node[:mdenvy][:ssh_servers].join(' ')} > /root/.ssh/known_hosts"
+  not_if { node[:mdenvy][:ssh_servers].nil? or node[:mdenvy][:ssh_servers].empty? }
 end
 
 ruby_block "Give root access to the forwarded ssh agent" do

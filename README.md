@@ -22,6 +22,17 @@ user defined the `node[:mdenvy][:user]` variable.
 For repository hygiene I'd recommend removing the example user (name
 `gfrey`) and project cookbooks.
 
+Please note that handling private git repositories during provisioning
+is kind of difficult because ssh agent forwarding breaks when changing
+the user (using the git resource 3in combination with a different
+user). The virtual machine's root user is configured to have access to
+the forwarded ssh agent (see the `base::ssh-agent` recipe), adding the
+appropriate fingerprints to the known_hosts file and hijacking the
+ssh-agent connection.
+
+I'd suggest cloning as root and afterwards change the ownership of the
+repositories checked out to the correct user.
+
 
 ## User Guide
 
