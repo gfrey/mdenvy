@@ -97,18 +97,10 @@ end
 
 ## -----------------------------------------------------------------------------
 ## Configure git.
-execute "configure git username" do
-  command = "git config --global user.name 'Gereon Frey'"
+mdenvy_gitconfig "gfrey" do
+  username "Gereon Frey"
+  email "me@gereonfreyde"
 end
-
-execute "configure git user email address" do
-  command = "git config --global user.email 'me@gereonfrey.de'"
-end
-
-execute "configure git colors" do
-  command = "git config --global color.ui true"
-end
-
 
 ## -----------------------------------------------------------------------------
 ## Install assorted packages.
