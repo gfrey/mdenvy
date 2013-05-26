@@ -56,12 +56,12 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    # Add base recipes.
-    chef.add_recipe "base::hostname"
-    chef.add_recipe "base::ssh-agent"
-    chef.add_recipe "base::update"
-    chef.add_recipe "base::packages"
-    chef.add_recipe "base::user"
+    # Add mdenvy recipes.
+    chef.add_recipe "mdenvy::hostname"
+    chef.add_recipe "mdenvy::ssh-agent"
+    chef.add_recipe "mdenvy::update"
+    chef.add_recipe "mdenvy::packages"
+    chef.add_recipe "mdenvy::user"
 
     # TODO: add your project's cookbooks. Make sure you check out code
     #       and make it available to the user that provisions the
