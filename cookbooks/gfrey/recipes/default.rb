@@ -66,6 +66,7 @@ end
 ## Setup tmux.
 package 'tmux'
 
+package 'xsel'
 package 'python-psutil'
 
 git "#{user_home}/usr/etc/tmuxified" do
