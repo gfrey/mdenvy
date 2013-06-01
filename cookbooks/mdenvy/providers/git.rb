@@ -30,6 +30,7 @@ def checkout_repo
 
   directory repo_path do
     mode "0755"
+    recursive true
     action :create
   end
 
@@ -39,6 +40,6 @@ def checkout_repo
   end
 
   execute "change ownership" do
-    command "chown -R #{new_resource.user}:users #{repo_path}"
+    command "chown -R #{new_resource.user}:users #{user_home}/development"
   end
 end
