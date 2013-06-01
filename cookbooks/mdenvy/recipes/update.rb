@@ -1,9 +1,8 @@
-## Change the apt mirror
-execute "change apt mirrors to generic one" do
-  command "sed -i 's|http://us.archive.ubuntu.com/ubuntu/|mirror://mirrors.ubuntu.com/mirrors.txt|' /etc/apt/sources.list"
-end
-
 ## Update the APT package cache
 execute "update the apt package cache and upgrade installed packages" do
   command "apt-get update && apt-get upgrade -y"
+  only_if do
+    (! File.exists?('/var/lib/apt/periodic/update-success-stamp')) ||
+       File.mtime('/var/lib/apt/periodic/update-success-stamp') < Time.now - 86400
+  end
 end
