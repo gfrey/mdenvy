@@ -9,6 +9,11 @@ user node[:mdenvy][:user] do
   action :create
 end
 
+## Add user to the admins group (for sudo)
+execute 'add user to admins group' do
+  command "usermod -a -G admin #{node[:mdenvy][:user]}"
+end
+
 ## Set up the ssh access using the given ssh public key.
 directory "#{user_home}/.ssh" do
   owner node[:mdenvy][:user]
