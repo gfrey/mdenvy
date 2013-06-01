@@ -30,7 +30,7 @@ def create_git_config
     source "gitconfig.erb"
     owner new_resource.user
     group "users"
-    variables({ "username" => new_resource.username,
-                "email"    => new_resource.email })
+    variables({ email: new_resource.email,
+                username: new_resource.username })
   end
 end
