@@ -105,4 +105,5 @@ end
 
 ## -----------------------------------------------------------------------------
 ## Install assorted packages.
+package 'tig'
 package 'fonts-ubuntu-font-family-console'
