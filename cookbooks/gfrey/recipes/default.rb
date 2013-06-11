@@ -100,7 +100,7 @@ end
 ## Configure git.
 mdenvy_gitconfig "gfrey" do
   username "Gereon Frey"
-  email "me@gereonfreyde"
+  email "me@gereonfrey.de"
 end
 
 ## -----------------------------------------------------------------------------
