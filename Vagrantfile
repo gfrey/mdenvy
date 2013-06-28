@@ -56,12 +56,17 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
+    # Explicitly set the cookbooks path to make it an array (required
+    # for some versions).
+    chef.cookbooks_path = ["cookbooks"]
+
     # Add mdenvy recipes.
     chef.add_recipe "mdenvy::hostname"
     chef.add_recipe "mdenvy::ssh-agent"
     chef.add_recipe "mdenvy::update"
     chef.add_recipe "mdenvy::packages"
     chef.add_recipe "mdenvy::user"
+    chef.add_recipe "mdenvy::samba"
 
     # TODO: add your project's cookbooks. Make sure you check out code
     #       and make it available to the user that provisions the
