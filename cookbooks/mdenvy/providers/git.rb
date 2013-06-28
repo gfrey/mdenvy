@@ -17,6 +17,7 @@ def load_current_resource
   @current_resource = Chef::Resource::MdenvyGit.new(@new_resource.repository)
   @current_resource.name(@new_resource.name)
   @current_resource.repository(@new_resource.repository)
+  @current_resource.branch(@new_resource.branch)
   @current_resource.path(@new_resource.path)
   @current_resource.user(@new_resource.user)
   @current_resource.exists = ::File.directory?("/home/#{@new_resource.user}/development/{@new_resource.path}")
@@ -36,6 +37,7 @@ def checkout_repo
 
   git repo_path do
     repository new_resource.repository
+    revision new_resource.branch unless new_resource.branch.nil?
     action :sync
   end
 
