@@ -67,6 +67,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "mdenvy::packages"
     chef.add_recipe "mdenvy::user"
     chef.add_recipe "mdenvy::samba"
+    chef.add_recipe "mdenvy::vbox"
 
     # TODO: add your project's cookbooks. Make sure you check out code
     #       and make it available to the user that provisions the
@@ -82,6 +83,7 @@ Vagrant::Config.run do |config|
     chef.json = { :mdenvy => { :user => ENV["USER"],
                                :pub_ssh_key => get_ssh_public_key,
                                :hostname => "sisyphos",
-                               :ssh_servers => ["github.com"] } }
+                               :ssh_servers => ["github.com"],
+                               :timezone => "Europe/Berlin" } }
   end
 end
