@@ -2,7 +2,7 @@ package 'samba'
 
 execute 'configure samba' do
   command 'printf "[homes]\n  browseable=no\n  read only=no\n  valid users=%s\n" >> /etc/samba/smb.conf'
-  not_if { system('grep "^\[homes\]$" /etc/samba/smb.conf') }
+  not_if { system('grep "^\[homes\]$" /etc/samba/smb.conf > /dev/null') }
 end
 
 execute 'add samba user' do
